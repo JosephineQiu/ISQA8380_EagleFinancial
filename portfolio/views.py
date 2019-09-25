@@ -90,7 +90,11 @@ def stock_edit(request, pk):
    else:
        # print("else")
        form = StockForm(instance=stock)
-   return render(request, 'portfolio/stock_edit.html', {'form': form})
+   return render(request,
+                 'portfolio/stock_edit.html',
+                 {'form': form,
+                  'stock': stock,
+                  'pk':pk,})
 
 
 @login_required()

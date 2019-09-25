@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('acquired_date', models.DateField(default=django.utils.timezone.now)),
                 ('recent_value', models.DecimalField(decimal_places=2, max_digits=10)),
                 ('recent_date', models.DateField(blank=True, default=django.utils.timezone.now, null=True)),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='investments', to='ISQA8380_EagleFinancial.portfolio.Customer')),
+                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='investments', to='portfolio.Customer')),
             ],
         ),
     ]
