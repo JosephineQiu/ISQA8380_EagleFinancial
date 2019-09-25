@@ -1,0 +1,1 @@
+web: gunicorn ISQA8380_EagleFinancial.wsgi --log-file –
