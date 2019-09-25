@@ -42,5 +42,5 @@ class UserRegistrationForm(forms.ModelForm):
 class InvestmentForm(forms.ModelForm):
     class Meta:
         model = Investment
-        fields = ('customer','category','description','cost_basis','recent_value','recent_date')
+        fields = ('customer','category','description','acquired_value','recent_value','recent_date')
 

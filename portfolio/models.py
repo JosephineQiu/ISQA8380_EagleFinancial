@@ -71,14 +71,3 @@ class Stock(models.Model):
     def initial_stock_value(self):
         return self.shares * self.purchase_price
 
-
-class Investment(models.Model):
-    customer = models.ForeignKey(Customer,
-                                 on_delete=models.CASCADE,
-                                 related_name='investment')
-    category = models.CharField(max_length=50)
-    description = models.CharField(max_length=250)
-    cost_basis = models.DecimalField(max_digits=10, decimal_places=2)
-    acquired_date = models.DateField(auto_now=True)
-    recent_value = models.DecimalField(max_digits=10, decimal_places=2)
-    recent_date = models.DateField(default=timezone.now())
