@@ -1,7 +1,6 @@
 {% extends "portfolio/base.html" %}
 {% load static %}
 {% block content %}
-{% load humanize %}
 
 <html>
 <head>
@@ -51,8 +50,8 @@
             <td>{{ investment.customer }}</td>
             <td>{{ investment.category }}</td>
             <td>{{investment.description}}</td>
-            <td>${{ investment.cost_basis|intcomma }}</td>
-            <td>${{ investment.recent_value|intcomma }}</td>
+            <td>${{ investment.acquired_value }}</td>
+            <td>${{ investment.recent_value }}</td>
             <td>{{ investment.recent_date }}</td>
             <td><a href="{% url 'portfolio:investment_edit' pk=investment.pk %}" class="btn btn-warning">Edit</a>
             <td><a href= " {% url 'portfolio:investment_delete' pk=investment.pk %} " onclick="return confirm('Are you sure you want to delete?')"

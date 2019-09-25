@@ -53,6 +53,25 @@ def customer_delete(request, pk):
 
 
 @login_required
+def customer_create(request):
+    if request.method == 'POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            customer = form.save(commit=False)
+            customer.updated_date=timezone.now()
+            customer.save()
+            customers = Customer.objects.all()
+            return render(request,
+                          'portfolio/customer_list.html',
+                           {'customers': customers})
+        else:
+            form = CustomerForm()
+            return render(request,
+                          'portfolio/customer_create.html',
+                           {"form":form})
+
+
+@login_required
 def stock_list(request):
    stocks = Stock.objects.filter(purchase_date__lte=timezone.now())
    return render(request, 'portfolio/stock_list.html', {'stocks': stocks})
@@ -69,34 +88,32 @@ def stock_new(request):
            stocks = Stock.objects.filter(purchase_date__lte=timezone.now())
            return render(request, 'portfolio/stock_list.html',
                          {'stocks': stocks})
-   else:
-       form = StockForm()
-       # print("Else")
-   return render(request, 'portfolio/stock_new.html', {'form': form})
+       else:
+           form = StockForm()
+          # print("Else")
+           return render(request, 'portfolio/stock_new.html', {'form': form})
 
 
 @login_required
-def stock_edit(request, pk):
-   stock = get_object_or_404(Stock, pk=pk)
-   if request.method == "POST":
-       form = StockForm(request.POST, instance=stock)
-       if form.is_valid():
-           stock = form.save()
-           # stock.customer = stock.id
-           stock.updated_date = timezone.now()
-           stock.save()
-           stocks = Stock.objects.all()
+def stock_edit(request,pk):
+    stock = get_object_or_404(Stock, pk=pk)
+    if request.method =='POST':
+        form = StockForm(request.POST, instance=stock)
+        if form.is_valid():
+            stock = form.save(commit=False)
+            stock.recent_date = timezone.now()
+            stock.save()
+            stocks = Stock.objects.all()
+            return render(request,
+                      'portfolio/stock_list.html',
+                      {'stocks':stocks})
+        else:
+           form=StockForm(instance=stock)
            return render(request,
-                         'portfolio/stock_list.html',
-                         {'stocks': stocks})
-   else:
-       # print("else")
-       form = StockForm(instance=stock)
-   return render(request,
-                 'portfolio/stock_edit.html',
-                 {'form': form,
-                  'stock': stock,
-                  'pk':pk,})
+                  'portfolio/stock_edit.html',
+                  {'form': form,
+                   'stock': stock,
+                   'pk': pk,})
 
 
 @login_required()
@@ -184,15 +201,15 @@ def investment_create(request):
             investment.recent_date = timezone.now()
             investment.save()
             investments = Investment.objects.all()
-        return render (request,
+            return render (request,
                        'portfolio/investment_list.html',
                        {'investments':investments}
                        )
-    else:
-        form = InvestmentForm
-    return render(request,
-                  'portfolio/investment_create.html',
-                  {'form': form})
+        else:
+            form = InvestmentForm
+            return render(request,
+                         'portfolio/investment_create.html',
+                          {'form': form})
 
 
 @ login_required
