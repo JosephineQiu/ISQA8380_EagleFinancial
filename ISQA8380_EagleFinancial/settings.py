@@ -164,11 +164,6 @@ EMAIL_PORT = 2525
 #EMAIL_USE_TLS = True
 
 
-try:
-    from .local_settings import *
-except ImportError:
-    pass
-
 CRISPY_TEMPLATE_PACK = 'bootstarp4'
 
 LOGIN_REDIRECT_URL = ''
