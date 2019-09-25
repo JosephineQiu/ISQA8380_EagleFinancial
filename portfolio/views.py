@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm,LoginForm
 from django.contrib.auth import authenticate,login
 from django.http import HttpResponse
-from django.shortcuts import render
 
 # Create your views here.
 
@@ -57,18 +56,18 @@ def customer_create(request):
     if request.method == 'POST':
         form = CustomerForm(request.POST)
         if form.is_valid():
-            customer = form.save(commit=False)
+            customer = form.save()
             customer.updated_date=timezone.now()
             customer.save()
             customers = Customer.objects.all()
-            return render(request,
-                          'portfolio/customer_list.html',
-                           {'customers': customers})
-        else:
-            form = CustomerForm()
-            return render(request,
-                          'portfolio/customer_create.html',
-                           {"form":form})
+        return render(request,
+                      'portfolio/customer_list.html',
+                      {'customers': customers})
+    else:
+       form = CustomerForm()
+       return render(request,
+                     'portfolio/customer_create.html',
+                     {'form': form})
 
 
 @login_required
@@ -77,6 +76,7 @@ def stock_list(request):
    return render(request, 'portfolio/stock_list.html', {'stocks': stocks})
 
 
+@login_required
 @login_required
 def stock_new(request):
    if request.method == "POST":
@@ -88,10 +88,11 @@ def stock_new(request):
            stocks = Stock.objects.filter(purchase_date__lte=timezone.now())
            return render(request, 'portfolio/stock_list.html',
                          {'stocks': stocks})
-       else:
-           form = StockForm()
-          # print("Else")
-           return render(request, 'portfolio/stock_new.html', {'form': form})
+   else:
+       form = StockForm()
+       # print("Else")
+   return render(request, 'portfolio/stock_new.html', {'form': form})
+
 
 
 @login_required
@@ -104,12 +105,12 @@ def stock_edit(request,pk):
             stock.recent_date = timezone.now()
             stock.save()
             stocks = Stock.objects.all()
-            return render(request,
+        return render(request,
                       'portfolio/stock_list.html',
                       {'stocks':stocks})
-        else:
-           form=StockForm(instance=stock)
-           return render(request,
+    else:
+      form=StockForm(instance=stock)
+    return render(request,
                   'portfolio/stock_edit.html',
                   {'form': form,
                    'stock': stock,
@@ -190,7 +191,7 @@ def investment_edit(request,pk):
         form = InvestmentForm(instance=investment)
     return render(request,
                   'portfolio/investment_edit.html',
-                  {'form':form})
+                {'form':form})
 
 @login_required
 def investment_create(request):
@@ -201,15 +202,15 @@ def investment_create(request):
             investment.recent_date = timezone.now()
             investment.save()
             investments = Investment.objects.all()
-            return render (request,
+        return render(request,
                        'portfolio/investment_list.html',
                        {'investments':investments}
                        )
-        else:
-            form = InvestmentForm
-            return render(request,
-                         'portfolio/investment_create.html',
-                          {'form': form})
+    else:
+        form = InvestmentForm
+    return render(request,
+                    'portfolio/investment_create.html',
+                        {'form': form})
 
 
 @ login_required

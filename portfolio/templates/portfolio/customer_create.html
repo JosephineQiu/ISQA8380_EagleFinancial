@@ -1,12 +1,11 @@
 {% extends "portfolio/base.html" %}
 {% load static %}
-{% load crispy_forms_tags %}
 
 {% block content %}
 <h1>Add a New Customer</h1>
 <form method="POST" class="customer-form">
     {% csrf_token %}
-    {{form|crispy}}
+    {{form.as_p}}
     <button type="submit"  class="save btn btn-default">
         ADD CUSTOMER
     </button>

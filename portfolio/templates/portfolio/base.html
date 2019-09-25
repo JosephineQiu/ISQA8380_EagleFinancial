@@ -81,13 +81,13 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{% url 'portfolio:logout' %}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
-                            <li><a href="{% url 'portfolio:password_change' %}">Change My Password</a></li>
+                            <li><a href="{% url 'portfolio:logout' %} "><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            <li><a href="{% url 'portfolio:password_change' %}">Change Password</a></li>
                         </ul>
                     </li>
                 {% else %}
-                    <li><a href="{% url 'portfolio:login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                    <li><a href="{% url 'portfolio:register' %}"><span class="glyphicon glyphicon-log-in"></span> Sign Up</a></li>
+                    <li><a href="{% url 'portfolio:login' %} "><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="{% url 'portfolio:register' %}">Sign Up</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -102,7 +102,7 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="thumbnail">
-                                <img src="{% static "images/../../static/images/customer.jpg" %}" alt="customer"/>
+                                <img src="{% static "images/customer.jpg" %}" alt="customer"/>
                                 <div class="caption">
                                     <h2>Customer</h2>
                                     <p>We see our success in our customers success, it gives us an immense pleasure when
@@ -110,28 +110,33 @@
                                         advises
                                         turn out to be fruitful. </p>
                                     {% if user.is_authenticated %}
-                                        <p><a class="btn btn-default" href="{% url 'portfolio:customer_list' %}" role="button">View details &raquo;</a></p>
+                                        <p><a class="btn btn-default" href="{% url 'portfolio:customer_list' %}"
+                                              role="button">View
+                                            details &raquo;</a></p>
                                     {% endif %}
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="thumbnail">
-                                <img src="{% static "images/../../static/images/nonstock.jpg" %}" alt="non-stock"/>
+                                <img src="{% static "images/nonstock.jpg" %}" alt="non-stock"/>
                                 <div class="caption">
                                     <h2>Non-Stock Investments</h2>
                                     <p>Our team also provides advises for Non-Stock investments.</p>
-                                    <p><a class="btn btn-default" href="{% url 'portfolio:investment_list' %}"role="button">View details &raquo;</a></p>
+                                    <p><a class="btn btn-default" href="{% url 'portfolio:customer_list' %}"
+                                           role="button">View
+                                        details &raquo;</a></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="thumbnail">
-                                <img src="{% static "images/../../static/images/stocks.jpg" %}" alt="stocks"/>
+                                <img src="{% static "images/stocks.jpg" %}" alt="stocks"/>
                                 <div class="caption">
                                     <h2>Stock Portfolio</h2>
                                     <p>Our Stock portfolios vary across industries.</p>
-                                    <p><a class="btn btn-default" href="{% url 'portfolio:stock_list' %}" role="button">View details &raquo;</a></p>
+                                    <p><a class="btn btn-default" href="{% url 'portfolio:customer_list' %}" role="button">View
+                                        details &raquo;</a></p>
                                 </div>
                             </div>
                         </div>
