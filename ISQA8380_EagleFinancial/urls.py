@@ -21,8 +21,8 @@ from django.conf.urls import url, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('portfolio.urls')),
-
+    path('', include('portfolio.urls',namespace='portfolio')),
+    path('',include('django.contrib.auth.urls')),
 
 
 ]
