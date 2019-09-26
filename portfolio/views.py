@@ -143,7 +143,7 @@ def user_login(request):
     else:
         form = LoginForm()
     return render(request,
-                  'accounts/login.html',
+                  'registration/login.html',
                   {'form': form})
 
 
@@ -157,12 +157,12 @@ def register(request):
             )
             new_user.save()
             return render(request,
-                          'accounts/register_done.html',
+                          'registration/register_done.html',
                           {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
     return render(request,
-                  'accounts/register.html',
+                  'registration/register.html',
                   {'user_form':user_form})
 
 @login_required
@@ -222,5 +222,5 @@ def investment_delete(request,pk):
 
 def logout(request):
     return render(request,
-                  "accounts/logged_out.html")
+                  "registration/logged_out.html")
 
