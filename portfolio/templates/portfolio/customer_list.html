@@ -27,7 +27,8 @@
         </div>
     </div>
     <div class="row">
-        <h2 style="padding-left: 15Px">Customer Information</h2>
+        <h2 style="padding-left: 12Px">Customer Information</h2>
+        <a href="{% url 'portfolio:customer_json' %}" style="padding-left: 12Px">View Customer API</a>
     </div>
     <div>
         <table class="table table-striped table-bordered table-hover">
@@ -58,7 +59,7 @@
                     <td><a href="{% url 'portfolio:customer_edit' pk=customer.pk %}" class="btn btn-warning">Edit</a>
                     <td><a href="{% url 'portfolio:customer_delete' pk=customer.pk %}" onclick="return confirm('Are you sure you want to delete?')" class="btn btn-danger">Delete</a>
                     </td>
-                    <td><a href="" class="btn btn-primary">Portfolio</a>
+                    <td><a href="{% url 'portfolio:portfolio' pk=customer.pk %}" class="btn btn-primary">Portfolio</a>
 
                 </tr>
             {% endfor %}
