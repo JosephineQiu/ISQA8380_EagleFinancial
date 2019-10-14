@@ -53,7 +53,7 @@ class Investment(models.Model):
         return str(self.customer)
 
     def results_by_investment(self):
-        return self.recent_value - self.acquired_value
+        return float(self.recent_value) - float(self.acquired_value)
 
 
 class Stock(models.Model):
@@ -72,7 +72,7 @@ class Stock(models.Model):
         return str(self.customer)
 
     def initial_stock_value(self):
-        return self.shares * self.purchase_price
+        return float(self.shares) * float(self.purchase_price)
 
     def current_stock_price(self):
         symbol_f = str(self.symbol)

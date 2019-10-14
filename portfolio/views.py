@@ -241,8 +241,8 @@ def portfolio(request,pk):
 
    # Loop through each stock and add the value to the total
    for stock in stocks:
-        sum_current_stocks_value += stock.current_stock_value()
-        sum_of_initial_stock_value += stock.initial_stock_value()
+        sum_current_stocks_value += stock.current_stock_value() #float
+        sum_of_initial_stock_value += stock.initial_stock_value() #float
 
    sum_recent_value = 0
    sum_acquired_value = 0
