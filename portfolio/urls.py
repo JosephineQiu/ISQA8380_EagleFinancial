@@ -43,6 +43,9 @@ urlpatterns = [
     url(r'^customers_json/', views.CustomerList.as_view(), name='customer_json'),
     url(r'^investment_json/', views.InvestmentList.as_view(), name='investments_json'),
 
+#currency_convert
+    # path('currency_convert/',views.currency,name='currency_convert'),
+
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

@@ -252,7 +252,7 @@ def portfolio(request,pk):
 
    overall_acquired = sum_of_initial_stock_value + sum_acquired_value
    overall_recent = sum_current_stocks_value + sum_recent_value
-   overall_results = overall_recent - float(overall_acquired)
+   overall_results = float(overall_recent) - float(overall_acquired)
    overall_results = round(overall_results,2)
 
    return render(request,
@@ -285,3 +285,17 @@ class InvestmentList(APIView):
         investment_json = Investment.objects.all()
         serializer = InvestmentSerializer(investment_json, many=True)
         return Response(serializer.data)
+
+
+# def currency_convert(request):
+#
+#     if request.method == 'POST':
+#         form = ConverterForm(request.POST)
+#
+#         return render(request,
+#                        'portfolio/currency.html')
+#     else:
+#         form = ConverterForm(instance=currency)
+#     return render(request,
+#                   'portfolio/currency.html',
+#                   {'form': form})

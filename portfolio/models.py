@@ -91,3 +91,28 @@ class Stock(models.Model):
         return self.current_stock_value() - float(self.initial_stock_value())
 
 
+# class currency(models.Model):
+#     from_currency = models.CharField(max_length=10)
+#     to_currency = models.CharField(max_length=10)
+#     from_number = models.DecimalField(decimal_places=2,max_digits=8)
+#     rate = models.DecimalField()
+#     date = models.DateTimeField(timezone.now())
+#     result = models.DecimalField(decimal_places=2,max_digits=8)
+#
+#     def rate(self):
+#         from_symbol = str(self.from_currency)
+#         to_symbol = str(self.to_currency)
+#         main_api = 'https://free.currconv.com/api/v7/convert?q='
+#         rate1 = from_symbol + '_' + to_symbol
+#         rate2 = to_symbol + '_' + from_symbol
+#         api_key = '&compact=ultra&apikey=672e844f6f7acb1e8217'
+#         url = main_api + rate1 + ',' + rate2 + api_key
+#         json_data = requests.get(url).json()
+#         rate = float(json_data[0][0])
+#         return rate
+#
+#     def result(self):
+#         return self.from_number * self.rate
+
+
+

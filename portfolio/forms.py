@@ -44,3 +44,7 @@ class InvestmentForm(forms.ModelForm):
         model = Investment
         fields = ('customer','category','description','acquired_value','recent_value','recent_date')
 
+# class ConverterForm(forms.ModelForm):
+#     class Meta:
+#         model = currency
+#         fields = ('from_currency','to_currency','from_number')
