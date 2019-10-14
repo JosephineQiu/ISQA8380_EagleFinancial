@@ -4,8 +4,8 @@ from django.db import models
 from django.utils import timezone
 import requests
 
-# Create your models here.
 
+# Create your models here.
 
 class Customer(models.Model):
     name = models.CharField(max_length=50)
