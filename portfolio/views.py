@@ -247,8 +247,8 @@ def portfolio(request,pk):
    sum_recent_value = 0
    sum_acquired_value = 0
    for investment in investments:
-       sum_recent_value += investment.recent_value
-       sum_acquired_value += investment.acquired_value
+       sum_recent_value += float(investment.recent_value)
+       sum_acquired_value += float(investment.acquired_value)
 
    overall_acquired = sum_of_initial_stock_value + sum_acquired_value
    overall_recent = sum_current_stocks_value + sum_recent_value
