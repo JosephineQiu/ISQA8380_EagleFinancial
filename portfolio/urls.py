@@ -44,7 +44,7 @@ urlpatterns = [
     url(r'^investment_json/', views.InvestmentList.as_view(), name='investments_json'),
 
 #currency_convert
-    # path('currency_convert/',views.currency,name='currency_convert'),
+    path('currency_convert/',views.currency_convert.as_view(), name='currency_convert'),
 
 ]
 

@@ -1,16 +1,12 @@
-from django.shortcuts import render
-from .models import *
-from .forms import *
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegistrationForm,LoginForm
+from .forms import *
 from django.contrib.auth import authenticate,login
 from django.http import HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
 from .serializers import CustomerSerializer,InvestmentSerializer
-
+from django.views.generic import TemplateView
 
 # Create your views here.
 
@@ -81,7 +77,6 @@ def stock_list(request):
    return render(request, 'portfolio/stock_list.html', {'stocks': stocks})
 
 
-@login_required
 @login_required
 def stock_new(request):
    if request.method == "POST":
@@ -287,15 +282,23 @@ class InvestmentList(APIView):
         return Response(serializer.data)
 
 
-# def currency_convert(request):
-#
-#     if request.method == 'POST':
-#         form = ConverterForm(request.POST)
-#
-#         return render(request,
-#                        'portfolio/currency.html')
-#     else:
-#         form = ConverterForm(instance=currency)
-#     return render(request,
-#                   'portfolio/currency.html',
-#                   {'form': form})
+class currency_convert(TemplateView):
+
+   def get(self, request):
+       form = ConverterForm()
+       return render(request,
+                     'portfolio/currency.html',
+                     {'form': form})
+
+   def post(self, request):
+       form = ConverterForm(request.POST)
+       if form.is_valid():
+           currency = form.save()
+           to_number = currency.to_number()
+       return render(request,
+                     'portfolio/currency.html',
+                     {'form': form,
+                      'currency': currency,
+                      'to_number': to_number})
+
+
