@@ -1,25 +1,17 @@
 {% extends "portfolio/base.html" %}
 {% block content %}
-  <div class="row">
-{#<form method="POST" action="." class="row" style="padding-top: 20px">#}
-{#    From: <input type="text" value="{{ currency.from_currency }}">#}
-{#    To: <input type="text" value="{{ currency.to_currency }}">#}
-{#    From Amount: <input type="text" value="{{ currency.from_number }}">#}
-{#    To Amount: <ul>{{ currency.to_number }}</ul>#}
-{##}
-{#    {% csrf_token %}#}
-{#</form>#}
 
-<div style="padding-top: 20px">
-    <form method="post">
+<div class='row' style="padding-top: 20px">
+    <h2>Converting Currency...</h2>
+        <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
     <button type="submit">Convert</button>
     </form>
 
-
 </div>
-  <h2>Result: {{ to_number }}</h2>
+      <h2>Result: {{ to_currency }}{{ to_number }}</h2>
   </div>
+</div>
 
 {% endblock %}

@@ -294,11 +294,17 @@ class currency_convert(TemplateView):
        form = ConverterForm(request.POST)
        if form.is_valid():
            currency = form.save()
+           from_currency = currency.from_currency
+           to_currency = currency.to_currency
+           from_number = currency.from_number
            to_number = currency.to_number()
        return render(request,
                      'portfolio/currency.html',
                      {'form': form,
                       'currency': currency,
+                      'from_currency': from_currency,
+                      'to_currency': to_currency,
+                      'from_number': from_number,
                       'to_number': to_number})
 
 
